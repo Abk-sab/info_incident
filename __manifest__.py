@@ -15,7 +15,7 @@
              'security/ir.model.access.csv',  
              'views/info_incident.xml',
              'views/info_incident_category.xml',
-             # 'views/info_incident_user.xml',
+             'views/info_incident_user.xml',
              'data/data.xml',
 
             ],
