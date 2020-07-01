@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <!-- View: /Incident/Incideny/user/Treeview -->
+    <record model="ir.ui.view" id="incident_user_role_Tree_view">
+        <field name="name">Incident.user.role.tree.view</field>
+        <field name="model">info.res.users</field>
+        <field name="inherit_id" ref="info_knowledge.knowledge_user_role_Tree_view"/>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+        </field>
+    </record>
+    
+    <!-- View: /Incident/Incideny/user/Formview -->
+    <record id="Incident_user_role_form_view" model="ir.ui.view">
+        <field name="name">Incident.user.role.form.view</field>
+        <field name="model">info.res.users</field>
+        <field name="inherit_id" ref="info_knowledge.knowledge_user_role_form_view"/>
+        <field name="arch" type="xml">
+        </field>
+    </record>
+  
+        <!-- View: /Incident/Incideny/user/ActionWidnow -->
+    <record id="open_views_incident_user_role" model="ir.actions.act_window">
+            <field name="name">Incident Res User</field>
+            <field name="res_model">info.res.users</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Add a new Incident User role
+              </p>
+            </field>
+    </record>
+</odoo>

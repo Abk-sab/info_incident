@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View: /Incident/Incident/Treeview -->
+    <record model="ir.ui.view" id="incident_Tree_view">
+        <field name="name">Incident tree view</field>
+        <field name="model">info.incidents.incidents</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Incident"> 
+                <field name="name"/>
+                <field name="info_caller"/>
+                <field name="info_short_desc"/>
+                <field name="info_subca_id"/>
+                <field name="info_subca_ids" widget="many2many_tags" />
+                <field name="info_priority"/>
+                <field name="info_assigned_to" /> 
+                <field name="info_state" />                 
+            </tree>
+        </field>
+    </record>
+   
+   <!-- View: /Incident/Incident/Formview -->
+    <record id="Incident_form_view" model="ir.ui.view">
+        <field name="name">Incidents view</field>
+        <field name="model">info.incidents.incidents</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                <field name="info_state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <sheet>
+                    <group>
+            	       <field name="name"/>
+                       <field name="info_caller"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="info_subca_id"/>
+                            <field name="info_subca_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="info_contact_type"/>
+                            
+                            <field name="info_impact"/>
+                            <field name="info_urgency"/>
+                            <field name="info_priority"/>
+                        </group>
+                        <group>
+                            <field name="info_assignement_group_id"/>
+                            <field name="info_assigned_to" />
+                            <field name="info_reason" />
+                        </group>
+                        <group>
+                        <field name="info_short_desc"/>
+                        <field name="info_desc"/>
+                            </group>
+                            
+                    </group>
+                    <notebook>
+                        <page string="Resolution Information">
+                            <group>
+                            <field name="info_Knowledge" />
+                            <field name="info_res_notes" />
+                            <field name="info_res_by" />
+                            <field name="info_res_date" />
+                        </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                </div>
+    		</form>
+    	</field>
+    </record>
+
+
+    <!-- View: /Incident/Incident/KanbanView-->
+    <record id="incident_kanban_view" model="ir.ui.view">
+        <field name="name">Incidents kanban</field>
+        <field name="model">info.incidents.incidents</field>
+       
+        <field name="arch" type="xml">
+            <kanban default_group_by="info_state" class="o_kanban_small_column o_kanban_project_tasks"  quick_create_view="info_incident.quick_create_incident_form">
+                <field name="color"/>
+                <field name="name"/>
+                <field name="info_caller"/>
+                <field name="info_short_desc"/>
+                <field name="info_desc"/>
+                <field name="info_subca_id"/>
+                <field name="info_subca_ids" />
+                <field name="info_priority"/>
+                <field name="info_assigned_to" />
+                <field name="info_reason" />
+                <field name="message_needaction_counter"/>
+        
+<!--                 <field name="rating_last_value"/>
+                <field name="rating_ids"/> -->
+                <!-- <field name="user_id"/> -->
+                <templates>
+                    <t t-name="kanban-box" >
+                        <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+
+                            <div class="oe_kanban_content">
+                                
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title"><field name="info_short_desc"/></strong><br/>
+                                        <small class="o_kanban_record_subtitle text-muted">          
+                                            <span>Caller:<field name="info_caller"/></span><br/>
+                                        </small>
+                                        <small>
+                                            <field name="info_subca_id"/>
+                                            <field name="info_subca_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                        </small>
+                                    </div>
+                                    <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+                                        <a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                            <span class="fa fa-ellipsis-v"/>
+                                        </a>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a t-if="widget.editable" role="menuitem" type="edit" class="dropdown-item">Edit Task</a>
+                                            <a t-if="widget.deletable" role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                                            <div role="separator" class="dropdown-divider"></div>
+                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                        </div>
+                                    </div>
+                                </div>
+ 
+                                <div class="o_kanban_record_body">
+                                    <field name="info_desc"/>
+                                </div>
+
+                                <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <field name="activity_ids" widget="kanban_activity"/>
+                                            <t t-if="record.message_needaction_counter.raw_value">
+                                                <span role="alert" class='oe_kanban_mail_new' title='Unread Messages'><i class='fa fa-comments' role="img" aria-label="Unread Messages"/><t t-raw="record.message_needaction_counter.raw_value"/></span>
+                                            </t>
+                                        </div>
+                                        <div class="o_kanban_record_bottom">
+                                            <img t-att-src="kanban_image('hr.employee', 'image_small', record.info_assigned_to.raw_value)" t-att-title="record.info_assigned_to.value" t-att-alt="record.info_assigned_to.value" width="24" height="24" class="oe_kanban_avatar"/>
+
+                                        </div>
+                                </div>
+
+                            </div>
+
+<!-- 
+
+                            <field name="info_impact"/>
+                            <field name="info_urgency"/>
+                            <field name="info_priority"/> -->
+                      
+                            <div class="oe_clear"></div>
+                        </div>
+                    </t>
+
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    
+
+            <record id="quick_create_incident_form" model="ir.ui.view">
+                <field name="name">incident.form.quick_create</field>
+                <field name="model">info.incidents.incidents</field>
+ 
+                <field name="arch" type="xml">
+                    <form>
+                        <group>
+                            <field name="info_caller"/>
+                            <field name="info_short_desc"/>
+                            <field name="info_desc"/>
+                            <field name="info_assigned_to" options="{'no_open': True,'no_create': True}"/>
+                            <field name="info_assignement_group_id"/>
+                        </group>
+                    </form>
+                </field>
+            </record>
+    <!-- View: /Incident/Incident/actionwindow -->
+    <record id="open_views_incident_base" model="ir.actions.act_window">
+            <field name="name">Incidents</field>
+            <field name="res_model">info.incidents.incidents</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,form,tree</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Add a new incident
+              </p>
+            </field>
+    </record>
+    
+    <!-- Menu: /Incident -->
+    <menuitem
+            id="main_menu_incident_views"
+            name="Incident"
+            groups="base.group_user"
+            sequence="74"/>
+
+    <!-- Menu: /Incident/Incident -->
+    <menuitem
+            id="menu_incident_masterdata_views"
+            name="Master Data"
+            parent="main_menu_incident_views"
+            groups="base.group_user"
+            sequence="74"/>
+
+    <menuitem
+            id="menu_incident_views"
+            name="Incident"
+            parent="menu_incident_masterdata_views"
+            groups="base.group_user"
+            action="open_views_incident_base"
+            sequence="74"/>
+
+   </odoo>

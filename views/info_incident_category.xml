@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View: /Incident/Incident categories/Treeview -->
+    <record model="ir.ui.view" id="incident_categories_Tree_view">
+        <field name="name">Incident categories tree view</field>
+        <field name="model">info.incidents.category</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Incident categories"> 
+                <field name="name"/>     
+                <field name="info_subcat_ids" widget="many2many_tags" />
+                <field name="info_description" />           
+            </tree>
+        </field>
+    </record>
+   
+   <!-- View: /Incident/Incident categories/Formview -->
+    <record id="Incident_form_categories_view" model="ir.ui.view">
+        <field name="name">Incident categories form view</field>
+        <field name="model">info.incidents.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group>
+                	<field name="name"/>
+                    <field name="info_subcat_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="info_description" />
+                    <field name="color" invisible="1"/>
+                </group>
+                </sheet>
+    		</form>
+    	</field>
+    </record>
+
+    <!-- View: /Incident/Incident categories/actionwindow -->
+    <record id="open_views_incident_categories_base" model="ir.actions.act_window">
+            <field name="name">Incident Categories</field>
+            <field name="res_model">info.incidents.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Add a new incident category
+              </p>
+            </field>
+    </record>
+    
+    <!-- Menu: /Incident/Incident categories -->
+    <menuitem
+            id="menu_Incident_cat_views"
+            name="Categories"
+            parent="menu_incident_masterdata_views"
+            groups="base.group_user"
+            action="open_views_incident_categories_base"
+            sequence="75"/>
+</odoo>

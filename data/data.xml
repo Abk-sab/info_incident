@@ -1,0 +1,13 @@
+<odoo>
+	<data>
+		<record id="incident_sequance" model="ir.sequence">
+			<field name="name">Information incident</field>
+			<field name="code">info.incidents.incidents</field>
+			<field name="active">TRUE</field>
+			<field name="prefix">INC</field>
+			<field name="padding">6</field>
+			<field name="number_next">1</field>
+			<field name="number_increment">1</field>
+		</record>
+	</data>
+</odoo>

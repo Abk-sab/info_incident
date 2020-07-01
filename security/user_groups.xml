@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        
+          <!-- Create Knowledge User: Read Write -->
+        <record id="group_caller" model="res.groups">
+            <field name="name">Caller</field>
+        </record>
+
+
+          <!-- Create Knowledge Manager: Read Write Create Unlink -->
+        <record id="group_technical" model="res.groups">
+            <field name="name">Technical Support</field>
+        </record>
+
+
+          <!-- Create Knowledge Contibutors: Read Write -->
+        <record id="group_owner_incident" model="res.groups">
+            <field name="name">Incident Management Owner</field>
+        </record>
+
+    </data>
+</odoo>
+
