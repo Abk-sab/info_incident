@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View: /Incident/Configuration/Incident Tags/Treeview -->
+    <record model="ir.ui.view" id="incident_tags_Tree_view">
+        <field name="name">Incident tags tree view</field>
+        <field name="model">info.incident.tags</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Incident Tags"> 
+                <field name="name"/>     
+                <field name="info_desc_tag" />          
+            </tree>
+        </field>
+    </record>
+   
+   <!-- View: /Incident/Configuration/Incident Tags/Formview -->
+    <record id="Incident_form_tags_view" model="ir.ui.view">
+        <field name="name">Incident tags form view</field>
+        <field name="model">info.incident.tags</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group>
+                	<field name="name"/>
+                    <field name="info_desc_tag" />
+                </group>
+                </sheet>
+    		</form>
+    	</field>
+    </record>
+
+    <!-- View: /Incident/Configuration/Incident Tags/actionwindow -->
+    <record id="open_views_incident_tags" model="ir.actions.act_window">
+            <field name="name">Incident Tags</field>
+            <field name="res_model">info.incident.tags</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Add a new Incident tag
+              </p>
+            </field>
+    </record>
+    
+    <!-- Menu: /Incident/Configuration/Incident Tags/ menu -->
+    <menuitem
+            id="menu_incident_tags_views"
+            name="Tags"
+            parent="menu_incident_conf_views"
+            groups="base.group_user"
+            action="open_views_incident_tags"
+            sequence="75"/>
+</odoo>

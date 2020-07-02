@@ -13,7 +13,7 @@ _logger = logging.getLogger(__name__)
 class InfoIncident(models.Model):
     _name = 'info.incidents.incidents'
     _inherit = ['mail.thread', 'mail.activity.mixin',]
-    _description = 'Incident'
+    
 
     """Fileds Declaration
        ------------------
@@ -65,8 +65,8 @@ class InfoIncident(models.Model):
                                    ('4','Low'),
                                    ('5', 'Planning')],string="Priority")
 
-    info_assignement_group_id = fields.Many2one('res.groups',string="Assignment group", required=True)
-    info_assigned_to = fields.Many2one('hr.employee',string="Assigned to", required=True)
+    info_assignement_group_id = fields.Many2one('info.assign.groups',string="Assignment group", required=True)
+    info_assigned_to = fields.Many2one('res.users',string="Assigned to", required=True)
 
     info_short_desc = fields.Char(string="Short description")
     info_desc = fields.Text(string="Description")

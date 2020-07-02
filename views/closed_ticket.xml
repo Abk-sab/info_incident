@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+   
+   <!-- View: /Incident/Configuration/Assignement Groups/Formview -->
+    <record id="Incident_form_closed_ticket" model="ir.ui.view">
+        <field name="name">Incident closed ticket</field>
+        <field name="model">info.closed.ticket</field>
+        <field name="arch" type="xml">
+           <form create="false">
+                <sheet>
+                <div style="margin-top:30px;margin-left:30px">
+                    <h1>Closed ticket configuration :</h1>
+                    
+                    <group>
+                        <p>Here you can configurate the number of days before the ticket is officialy closed after it was resolved.</p><br/>
+                        <p>Once a ticket is in state <i>"Resolved"</i> a trigger will count the number of days (depanding on the value you will enter in this configuration) starting from that date and will change the ticket state to <i>"Closed"</i> automaticaly</p><br/>
+                        <p>Please enter the number of days before the ticket is closed: 
+                        <span><field name="days_to_closed" style="width:25px" /></span>days.</p>
+                    </group>
+                </div>
+                </sheet>
+            </form>
+    	</field>
+    </record>
+
+    <!-- View: /Incident/Configuration/Assignement Groups/actionwindow -->
+    <record id="open_views_incident_closed_ticket" model="ir.actions.act_window">
+            <field name="name">Number of days before ticket is closed</field>
+            <field name="res_model">info.closed.ticket</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                Add a new closed date Group 
+              </p>
+            </field>
+    </record>
+    
+    <!-- Menu: /Incident/Configuration/Number of days before ticket is closed/ menu -->
+    <menuitem
+            id="menu_incident_closed_ticket"
+            name="Number of days before ticket is closed"
+            parent="menu_incident_conf_views"
+            groups="base.group_user"
+            action="open_views_incident_closed_ticket"
+            sequence="75"/>
+</odoo>

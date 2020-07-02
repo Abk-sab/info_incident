@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View: /Incident/Configuration/Priority/Treeview -->
+    <record model="ir.ui.view" id="incident_priority_Tree_view">
+        <field name="name">Incident Priority tree view</field>
+        <field name="model">info.incident.priority</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Priority"> 
+                <field name="name"/>     
+                <field name="info_value" />          
+            </tree>
+        </field>
+    </record>
+   
+   <!-- View: /Incident/Configuration/Priority/Formview -->
+    <record id="Incident_form_priority_view" model="ir.ui.view">
+        <field name="name">Incident Priority form view</field>
+        <field name="model">info.incident.priority</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group>
+                	<field name="name"/>
+                    <field name="info_value" />
+                </group>
+                </sheet>
+    		</form>
+    	</field>
+    </record>
+
+    <!-- View: /Incident/Configuration/Priority/actionwindow -->
+    <record id="open_views_incident_priority" model="ir.actions.act_window">
+            <field name="name">Priority</field>
+            <field name="res_model">info.incident.priority</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Add a new Priority
+              </p>
+            </field>
+    </record>
+    
+    <!-- Menu: /Incident/Configuration/Priority/ menu -->
+    <menuitem
+            id="menu_incident_priority_views"
+            name="Priority"
+            parent="menu_incident_conf_views"
+            groups="base.group_user"
+            action="open_views_incident_priority"
+            sequence="75"/>
+</odoo>

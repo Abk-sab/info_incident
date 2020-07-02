@@ -9,5 +9,9 @@
 			<field name="number_next">1</field>
 			<field name="number_increment">1</field>
 		</record>
+		<record id="close_tickets_id" model="info.closed.ticket">
+			<field name="name">Closed days configuration</field>
+			<field name="days_to_closed">3</field>
+		</record>
 	</data>
 </odoo>

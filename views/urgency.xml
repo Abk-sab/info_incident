@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- View: /Incident/Configuration/urgency/Treeview -->
+    <record model="ir.ui.view" id="incident_urgency_Tree_view">
+        <field name="name">Incident urgency tree view</field>
+        <field name="model">info.incident.urgency</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Urgency"> 
+                <field name="name"/>     
+                <field name="info_value" />          
+            </tree>
+        </field>
+    </record>
+   
+   <!-- View: /Incident/Configuration/urgency/Formview -->
+    <record id="Incident_form_urgency_view" model="ir.ui.view">
+        <field name="name">Incident urgency form view</field>
+        <field name="model">info.incident.urgency</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                <group>
+                	<field name="name"/>
+                    <field name="info_value" />
+                </group>
+                </sheet>
+    		</form>
+    	</field>
+    </record>
+
+    <!-- View: /Incident/Configuration/Priority/actionwindow -->
+    <record id="open_views_incident_urgency" model="ir.actions.act_window">
+            <field name="name">Urgency</field>
+            <field name="res_model">info.incident.urgency</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Add a new Urgency
+              </p>
+            </field>
+    </record>
+    
+    <!-- Menu: /Incident/Configuration/urgency/ menu -->
+    <menuitem
+            id="menu_incident_urgency_views"
+            name="Urgency"
+            parent="menu_incident_conf_views"
+            groups="base.group_user"
+            action="open_views_incident_urgency"
+            sequence="75"/>
+</odoo>

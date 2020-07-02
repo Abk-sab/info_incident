@@ -82,7 +82,7 @@
         <field name="model">info.incidents.incidents</field>
        
         <field name="arch" type="xml">
-            <kanban default_group_by="info_state" class="o_kanban_small_column o_kanban_project_tasks"  quick_create_view="info_incident.quick_create_incident_form">
+            <kanban default_group_by="info_state" class="o_kanban_small_column o_kanban_project_tasks" create="false">
                 <field name="color"/>
                 <field name="name"/>
                 <field name="info_caller"/>
@@ -161,24 +161,7 @@
             </kanban>
         </field>
     </record>
-    
 
-            <record id="quick_create_incident_form" model="ir.ui.view">
-                <field name="name">incident.form.quick_create</field>
-                <field name="model">info.incidents.incidents</field>
- 
-                <field name="arch" type="xml">
-                    <form>
-                        <group>
-                            <field name="info_caller"/>
-                            <field name="info_short_desc"/>
-                            <field name="info_desc"/>
-                            <field name="info_assigned_to" options="{'no_open': True,'no_create': True}"/>
-                            <field name="info_assignement_group_id"/>
-                        </group>
-                    </form>
-                </field>
-            </record>
     <!-- View: /Incident/Incident/actionwindow -->
     <record id="open_views_incident_base" model="ir.actions.act_window">
             <field name="name">Incidents</field>

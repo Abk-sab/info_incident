@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- View: /Incident/configuration/email template/Treeview -->
+   <record model="ir.ui.view" id="incident_email_template_Tree_view">
+        <field name="name">Incident Email Template Tree view</field>
+        <field name="model">info.email.template.incident</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Article template"> 
+
+                <field name="name"/>
+                    
+            </tree>
+        </field>
+    </record>
+
+    
+    <!-- View: /Incident/configuration/email template/Formview -->
+    <record id="incident_email_template_form_view" model="ir.ui.view">
+        <field name="name">Incident Email Template form view</field>
+        <field name="model">info.email.template.incident</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>                
+                    
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Email template name"/></h1>
+                        
+                    </div>
+                    <field name="email"/>
+    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- View: /Incident/email template/actionwindow -->
+    <record id="open_views_email_template_incident" model="ir.actions.act_window">
+            <field name="name">Incident Email template</field>
+            <field name="res_model">info.email.template.incident</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Add a new Incident Email template
+              </p>
+            </field>
+    </record>
+
+
+    <!-- Menu: /Incident/Configuration/email template/ menu -->
+    <menuitem
+            id="menu_incident_email_template"
+            name="Email template"
+            parent="menu_incident_conf_views"
+            groups="base.group_user"
+            action="open_views_email_template_incident"
+            sequence="75"/>
+
+    
+</odoo>

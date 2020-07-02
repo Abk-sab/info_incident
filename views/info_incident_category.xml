@@ -50,8 +50,8 @@
     <menuitem
             id="menu_Incident_cat_views"
             name="Categories"
-            parent="menu_incident_masterdata_views"
+            parent="menu_incident_conf_views"
             groups="base.group_user"
             action="open_views_incident_categories_base"
-            sequence="75"/>
+            sequence="80"/>
 </odoo>
