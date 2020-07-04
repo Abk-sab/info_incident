@@ -15,5 +15,7 @@ class ClosedTicketConfiguration(models.Model):
     _name = 'info.closed.ticket'
     _description = 'ClosedTicket'
     
-    name = fields.Char()
-    days_to_closed = fields.Integer(default="3")
+    name = fields.Char(default="Configuration Closed Ticket" ,store=True)
+    info_days = fields.Integer()
+
+

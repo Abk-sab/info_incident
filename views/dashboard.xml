@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="incident_dashboard" model="ir.actions.act_window">
+        <field name="name">incident 1</field>
+        <field name="res_model">info.incidents.incidents</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="info_incident.art_dashb"/>
+    </record>
+	<record id="incident_dashboard1" model="ir.actions.act_window">
+        <field name="name">incident 2</field>
+        <field name="res_model">info.incidents.incidents</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="info_incident.art_dashb1"/>
+    </record>
+    <record id="incident_dashboard2" model="ir.actions.act_window">
+        <field name="name">incident 3</field>
+        <field name="res_model">info.incidents.incidents</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="info_incident.art_dashb2"/>
+    </record>
+        <record id="incident_dashboard3" model="ir.actions.act_window">
+        <field name="name">incident 4</field>
+        <field name="res_model">info.incidents.incidents</field>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="info_incident.art_dashb3"/>
+    </record>
+
+     <!-- View: /Info Incident/Dashoboard -->
+    <record id="dashboard_form_view_incident" model="ir.ui.view">
+        <field name="name">Incident Dashboard Form</field>
+        <field name="model">board.board</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Dashboard">
+    		<board style="1-2">
+    			<column>
+    				<action
+					string="Incident per state"
+					name="%(info_incident.incident_dashboard)d"
+    				/>
+					<action
+					string="Incident per category"
+					name="%(info_incident.incident_dashboard2)d"
+					/>
+    			</column>
+    			<column>
+    				    <action
+    					string="Incident state per date"
+    					name="%(info_incident.incident_dashboard1)d"
+    					/>
+                        <action
+                        string=""
+                        name="%(info_incident.incident_dashboard3)d"
+                        />
+    					
+    			</column>
+    		</board>           
+            </form>
+        </field>
+    </record>
+
+    <record id="incident_dashboard" model="ir.actions.act_window">
+        <field name="name">Incident Dashboard</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="usage">menu</field>
+        <field name="view_id" ref="dashboard_form_view_incident" />
+	</record>
+
+    <menuitem
+        id="menu_dashboard_incident"
+        name="Dashboard"
+        parent="main_menu_incident_views"
+        action="incident_dashboard"
+        groups="base.group_user"
+        sequence="74"/>
+
+</odoo>

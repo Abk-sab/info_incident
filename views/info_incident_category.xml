@@ -48,7 +48,7 @@
     
     <!-- Menu: /Incident/Incident categories -->
     <menuitem
-            id="menu_Incident_cat_views"
+            id="menu_Incident_categ_views"
             name="Categories"
             parent="menu_incident_conf_views"
             groups="base.group_user"

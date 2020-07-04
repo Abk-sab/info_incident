@@ -8,14 +8,14 @@
     'summary': 'Info Incident',
     # 'website': 'https://github.com/fmdl',
 
-    'depends': ['base','board','hr','info_knowledge','mail',],
+    'depends': ['base','board','hr','info_knowledge','mail','board',],
     'data': [
 
              'security/user_groups.xml',   
              'security/ir.model.access.csv',  
              'views/info_incident.xml',
-             'views/info_incident_category.xml',
              'views/info_incident_user.xml',
+             'views/info_incident_category.xml',
              'views/assigne_group.xml',
              'views/closed_ticket.xml',
              'views/info_incident_tags.xml',
@@ -24,6 +24,7 @@
              'views/priority.xml',
              'views/urgency.xml',
              'views/incident_email_template.xml',
+             'views/dashboard.xml',
              'data/data.xml',
 
             ],

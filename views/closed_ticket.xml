@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
+    <!-- View: /Incident/Configuration/Closed ticket/Treeview -->
+    <record model="ir.ui.view" id="incident_closedticket_Tree_view">
+        <field name="name">Incident Closed ticket tree view</field>
+        <field name="model">info.closed.ticket</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree create="false"> 
+                <field name="name"/>
+                <field name="info_days"/>               
+            </tree>
+        </field>
+    </record>
    
-   <!-- View: /Incident/Configuration/Assignement Groups/Formview -->
+   <!-- View: /Incident/Configuration/closed ticket/Formview -->
     <record id="Incident_form_closed_ticket" model="ir.ui.view">
         <field name="name">Incident closed ticket</field>
         <field name="model">info.closed.ticket</field>
+        <field name="type">form</field>
         <field name="arch" type="xml">
            <form create="false">
                 <sheet>
@@ -17,7 +29,7 @@
                         <p>Here you can configurate the number of days before the ticket is officialy closed after it was resolved.</p><br/>
                         <p>Once a ticket is in state <i>"Resolved"</i> a trigger will count the number of days (depanding on the value you will enter in this configuration) starting from that date and will change the ticket state to <i>"Closed"</i> automaticaly</p><br/>
                         <p>Please enter the number of days before the ticket is closed: 
-                        <span><field name="days_to_closed" style="width:25px" /></span>days.</p>
+                        <span><field name="info_days" style="width:25px" /></span>days.</p>
                     </group>
                 </div>
                 </sheet>
@@ -30,7 +42,7 @@
             <field name="name">Number of days before ticket is closed</field>
             <field name="res_model">info.closed.ticket</field>
             <field name="view_type">form</field>
-            <field name="view_mode">form</field>
+            <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                 Add a new closed date Group 
@@ -40,7 +52,7 @@
     
     <!-- Menu: /Incident/Configuration/Number of days before ticket is closed/ menu -->
     <menuitem
-            id="menu_incident_closed_ticket"
+            id="menu_incident_closed_ticket_days"
             name="Number of days before ticket is closed"
             parent="menu_incident_conf_views"
             groups="base.group_user"

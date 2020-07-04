@@ -24,6 +24,7 @@
     <record id="Incident_form_view" model="ir.ui.view">
         <field name="name">Incidents view</field>
         <field name="model">info.incidents.incidents</field>
+        <field name="type">form</field>
         <field name="arch" type="xml">
             <form>
                 <header>
@@ -33,6 +34,8 @@
                     <group>
             	       <field name="name"/>
                        <field name="info_caller"/>
+                       <!-- <field name="info_closed_ticket_id" /> -->
+                       <!-- <field name="info_closed_ticket" /> -->
                     </group>
                     <group>
                         <group>
@@ -80,9 +83,9 @@
     <record id="incident_kanban_view" model="ir.ui.view">
         <field name="name">Incidents kanban</field>
         <field name="model">info.incidents.incidents</field>
-       
+       <field name="type">kanban</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="info_state" class="o_kanban_small_column o_kanban_project_tasks" create="false">
+            <kanban default_group_by="info_state" class="o_kanban_small_column o_kanban_project_tasks" >
                 <field name="color"/>
                 <field name="name"/>
                 <field name="info_caller"/>
@@ -167,13 +170,58 @@
             <field name="name">Incidents</field>
             <field name="res_model">info.incidents.incidents</field>
             <field name="view_type">form</field>
-            <field name="view_mode">kanban,form,tree</field>
+            <field name="view_mode">kanban,tree,form</field>
             <field name="help" type="html">
               <p class="o_view_nocontent_smiling_face">
                 Add a new incident
               </p>
             </field>
     </record>
+
+    <record model="ir.ui.view" id="art_dashb">
+        <field name="name">Incident graph view</field>
+        <field name="model">info.incidents.incidents</field>
+        <field name="arch" type="xml">
+            <graph string="Incident per state" type="pie"> 
+                <field name="info_state"/>
+            </graph>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="art_dashb2">
+        <field name="name">Incident graph view 2</field>
+        <field name="model">info.incidents.incidents</field>
+        <field name="arch" type="xml">
+            <graph string="Incident per category" type="pie"> 
+                <field name="info_subca_id"/>
+            </graph>
+        </field>
+    </record>
+
+        <record model="ir.ui.view" id="art_dashb1">
+        <field name="name">Incident graph view 1</field>
+        <field name="model">info.incidents.incidents</field>
+        <field name="arch" type="xml">
+            <graph string="Incident state per date " type="bar"> 
+                <field name="create_date" interval="month" type="col"/>
+                <field name="info_state"/>
+            </graph>
+        </field>
+        </record>
+        
+        <record model="ir.ui.view" id="art_dashb3">
+        <field name="name">Incident graph view 3</field>
+        <field name="model">info.incidents.incidents</field>
+        <field name="arch" type="xml">
+            <graph string="Incident's on hold reason" type="pie"> 
+                <!-- <field name="create_date" interval="month" type="col"/> -->
+                <field name="info_reason"/>
+            </graph>
+        </field>
+        </record>
+                        
+
     
     <!-- Menu: /Incident -->
     <menuitem

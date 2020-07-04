@@ -1,5 +1,5 @@
 <odoo>
-	<data>
+	<data >
 		<record id="incident_sequance" model="ir.sequence">
 			<field name="name">Information incident</field>
 			<field name="code">info.incidents.incidents</field>
@@ -11,7 +11,7 @@
 		</record>
 		<record id="close_tickets_id" model="info.closed.ticket">
 			<field name="name">Closed days configuration</field>
-			<field name="days_to_closed">3</field>
+			<field name="info_days">3</field>
 		</record>
 	</data>
 </odoo>

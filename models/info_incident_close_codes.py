@@ -17,3 +17,5 @@ class IncidentCloseCode(models.Model):
     
     name = fields.Char(string="Incident Close Code")
     info_desc_close_code = fields.Text(string="Description")
+
+
