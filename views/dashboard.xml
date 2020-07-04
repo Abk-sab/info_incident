@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-	<record id="incident_dashboard" model="ir.actions.act_window">
+	<record id="incident_dashboard0" model="ir.actions.act_window">
         <field name="name">incident 1</field>
         <field name="res_model">info.incidents.incidents</field>
         <field name="view_mode">graph</field>
-        <field name="view_id" ref="info_incident.art_dashb"/>
+        <field name="view_id" ref="info_incident.art_dashbo"/>
     </record>
 	<record id="incident_dashboard1" model="ir.actions.act_window">
         <field name="name">incident 2</field>
@@ -33,11 +33,11 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Dashboard">
-    		<board style="1-2">
+    		<board style="2-2">
     			<column>
     				<action
 					string="Incident per state"
-					name="%(info_incident.incident_dashboard)d"
+					name="%(info_incident.incident_dashboard0)d"
     				/>
 					<action
 					string="Incident per category"
@@ -50,7 +50,7 @@
     					name="%(info_incident.incident_dashboard1)d"
     					/>
                         <action
-                        string=""
+                        string="Incident's On Hold reason"
                         name="%(info_incident.incident_dashboard3)d"
                         />
     					

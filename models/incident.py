@@ -45,7 +45,7 @@ class InfoIncident(models.Model):
     info_subca_ids = fields.One2many('info.incidents.subcategory', inverse_name='info_subcat_incident_id', string="Subcategory")
 
     info_subca_id = fields.Many2one('info.incidents.category', string="Category")
-
+    # info_state_re= fields.Selection(compute="state_rel")
 
     info_contact_type = fields.Char(string="Contact Type")
     info_state = fields.Selection([('new', 'New'),
@@ -56,6 +56,7 @@ class InfoIncident(models.Model):
                                    ('cancelled', 'Cancelled')], default='new',group_expand='_expand_states', index=True)
 
     info_impact = fields.Many2one('info.incident.impact', string="Impact")
+    # role_id = fields.Many2one('info.res.users', related="info_assignement_group_id.info_group_id" )
 
     info_urgency = fields.Many2one('info.incidents.priority', string="Urgency")
 
@@ -116,4 +117,7 @@ class InfoIncident(models.Model):
                 self.calculated_d = calculated_close.date()
                 _logger.warning(calculated_close)
 
-  
+    # @api.multi
+    # def state_rel(self):
+    #   for incident in self:
+    #     self.info_state_re = self.state_rel

@@ -49,8 +49,9 @@
                         </group>
                         <group>
                             <field name="info_assignement_group_id"/>
-                            <field name="info_assigned_to" />
-                            <field name="info_reason" />
+                            <field name="info_assigned_to"  />
+                            <field name="info_reason" attrs="{'invisible': [('info_state','!=','onhold')]}" />
+                            <!-- <field name="role_id" invisible="1" /> -->
                         </group>
                         <group>
                         <field name="info_short_desc"/>
@@ -178,7 +179,7 @@
             </field>
     </record>
 
-    <record model="ir.ui.view" id="art_dashb">
+    <record model="ir.ui.view" id="art_dashbo">
         <field name="name">Incident graph view</field>
         <field name="model">info.incidents.incidents</field>
         <field name="arch" type="xml">
@@ -215,7 +216,7 @@
         <field name="model">info.incidents.incidents</field>
         <field name="arch" type="xml">
             <graph string="Incident's on hold reason" type="pie"> 
-                <!-- <field name="create_date" interval="month" type="col"/> -->
+                <!-- <field name="create_date" interval="month" type="col"/>  -->
                 <field name="info_reason"/>
             </graph>
         </field>
