@@ -9,6 +9,7 @@ from odoo import models, fields, api, _
 import logging
 from datetime import datetime
 from datetime import timedelta
+from dateutil.relativedelta import relativedelta
 _logger = logging.getLogger(__name__) 
 
 
@@ -88,6 +89,16 @@ class InfoIncident(models.Model):
     info_res_notes = fields.Text(string="Resolution notes")
     info_res_by = fields.Many2one('hr.employee',string="Resolved by")
     info_res_date = fields.Date(string="Resolved date")
+
+    @api.model
+    def _lunch_action_window(self):
+      rec_ids = self.env['info.incidents.incidents'].search([('calculated_d', '!=', False),('info_state','!=', 'closed')])
+      for rec in rec_ids:
+        if rec.calculated_d < datetime.today().date():
+          rec.info_state = "closed"
+
+      action = self.env.ref('info_incident.open_views_incident_base').read()[0]
+      return action
    
     @api.model
     def create(self, vals):
@@ -111,7 +122,12 @@ class InfoIncident(models.Model):
                 _logger.warning(current_date)
                 # self.calculated_close_ticket_day = current_day_date + self.info_closed_ticket
                 date_1 = datetime.strptime(str(current_date), "%Y-%m-%d") 
-                calculated_close = date_1 + timedelta(days=self.info_closed_ticket)
+                _logger.warning('data')
+                
+
+                # calculated_close = date_1 + timedelta(days=self.)
+                _logger.warning(self.info_closed_ticket_id.info_days)
+                calculated_close = datetime.now() + relativedelta(days=self.info_closed_ticket_id.info_days)
                 self.calculated_d = calculated_close.date()
                 _logger.warning(calculated_close)
 

@@ -223,6 +223,16 @@
             </graph>
         </field>
         </record>
+
+        <!-- definiton of action server to execute _lunch_action_window python function -->
+    <record id="incident_window_with_values" model="ir.actions.server">
+        <field name="name">Incident Trigger</field>
+        <field name="model_id" ref="model_info_incidents_incidents"/>
+        <field name="binding_model_id" ref="model_info_incidents_incidents"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = model._lunch_action_window()</field>
+    </record>
                         
 
     
@@ -246,7 +256,7 @@
             name="Incident"
             parent="menu_incident_masterdata_views"
             groups="base.group_user"
-            action="open_views_incident_base"
+            action="incident_window_with_values"
             sequence="74"/>
 
    </odoo>

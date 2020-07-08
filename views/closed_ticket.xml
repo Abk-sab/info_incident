@@ -7,7 +7,7 @@
         <field name="model">info.closed.ticket</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree create="false"> 
+            <tree> 
                 <field name="name"/>
                 <field name="info_days"/>               
             </tree>
@@ -20,7 +20,7 @@
         <field name="model">info.closed.ticket</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
-           <form create="false">
+           <form>
                 <sheet>
                 <div style="margin-top:30px;margin-left:30px">
                     <h1>Closed ticket configuration :</h1>
