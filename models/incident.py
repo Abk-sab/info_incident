@@ -56,8 +56,6 @@ class InfoIncident(models.Model):
                                    ('cancelled', 'Cancelled')], default='new',group_expand='_expand_states', index=True)
 
     info_impact = fields.Many2one('info.incident.impact', string="Impact")
-    # role_id = fields.Many2one('info.res.users', related="info_assignement_group_id.info_group_id" )
-
     info_urgency = fields.Many2one('info.incidents.priority', string="Urgency")
 
     info_priority = fields.Many2one('info.incidents.urgency', string="Priority")
@@ -117,7 +115,19 @@ class InfoIncident(models.Model):
                 self.calculated_d = calculated_close.date()
                 _logger.warning(calculated_close)
 
-    # @api.multi
-    # def state_rel(self):
-    #   for incident in self:
-    #     self.info_state_re = self.state_rel
+    @api.multi
+    @api.onchange('info_assignement_group_id.info_group_id.user_list')
+    def get_users_(self):
+      # # prefetch
+      # data = {d['id']: d['role_id']
+      #         for d in self.read(['role_id'])}
+      for incident in self:
+        group_ids = incident.info_assignement_group_id.info_group_id.user_list
+        _logger.warning("------------+++++++++++-----------")
+        _logger.warning(group_ids)
+        
+        # if self.ids:
+        #   user_ids = self.env['info.assign.groups'].search(['info_group_id', 'in',group_ids.ids ])[0]
+        #   list_users = user_ids.user_list
+        #   _logger.warning("------------+++++++++++-----------")
+        # _logger.warning(list_users)
