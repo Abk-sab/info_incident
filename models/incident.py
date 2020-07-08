@@ -57,9 +57,9 @@ class InfoIncident(models.Model):
                                    ('cancelled', 'Cancelled')], default='new',group_expand='_expand_states', index=True)
 
     info_impact = fields.Many2one('info.incident.impact', string="Impact")
-    info_urgency = fields.Many2one('info.incidents.priority', string="Urgency")
+    info_urgency = fields.Many2one('info.incident.priority', string="Urgency")
 
-    info_priority = fields.Many2one('info.incidents.urgency', string="Priority")
+    info_priority = fields.Many2one('info.incident.urgency', string="Priority")
 
     info_assignement_group_id = fields.Many2one('info.assign.groups',string="Assignment group", required=True)
     info_assigned_to = fields.Many2one('res.users',string="Assigned to", required=True)

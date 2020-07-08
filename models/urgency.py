@@ -15,5 +15,17 @@ class IncidentUrgency(models.Model):
     _name = 'info.incident.urgency'
     _description = 'IncidentUrgency'
     
-    name = fields.Char(string="Urgency")
-    info_value = fields.Text(string="Urgency Value")
+    name = fields.Char(string="Name",compute="get_concatenate_values", store=True, readonly=True)
+    info_name = fields.Char(string="Urgency")
+    info_value = fields.Integer(string="Urgency Value")
+
+
+    @api.multi
+    @api.depends('info_name','info_value')
+    def get_concatenate_values(self):
+        for r in self:
+            if(r.info_value and r.info_name):
+                result = "%d - %s" % \
+                         (r.info_value or '', r.info_name or 0.0)
+                self.name=result 
+

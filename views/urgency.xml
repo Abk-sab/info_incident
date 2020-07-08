@@ -8,8 +8,7 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Urgency"> 
-                <field name="name"/>     
-                <field name="info_value" />          
+                <field name="name"/>             
             </tree>
         </field>
     </record>
@@ -24,6 +23,8 @@
                 <group>
                 	<field name="name"/>
                     <field name="info_value" />
+                    <field name="info_name"/>
+              
                 </group>
                 </sheet>
     		</form>

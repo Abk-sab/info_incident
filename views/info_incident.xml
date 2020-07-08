@@ -88,7 +88,7 @@
         <field name="model">info.incidents.incidents</field>
        <field name="type">kanban</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="info_state" class="o_kanban_small_column o_kanban_project_tasks" >
+            <kanban default_group_by="info_state" class="o_kanban_small_column o_kanban_project_tasks" quick_create="false">
                 <field name="color"/>
                 <field name="name"/>
                 <field name="info_caller"/>

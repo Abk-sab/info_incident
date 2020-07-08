@@ -74,6 +74,6 @@
         parent="main_menu_incident_views"
         action="incident_dashboard"
         groups="base.group_user"
-        sequence="74"/>
+        sequence="90"/>
 
 </odoo>

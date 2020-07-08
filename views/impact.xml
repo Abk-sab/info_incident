@@ -8,8 +8,7 @@
         <field name="type">tree</field>
         <field name="arch" type="xml">
             <tree string="Impact"> 
-                <field name="name"/>     
-                <field name="info_value" />          
+                    <field name="name"/>       
             </tree>
         </field>
     </record>
@@ -22,8 +21,9 @@
             <form>
                 <sheet>
                 <group>
-                	<field name="name"/>
+                    <field name="name"/>
                     <field name="info_value" />
+                    <field name="info_name"/>
                 </group>
                 </sheet>
     		</form>
