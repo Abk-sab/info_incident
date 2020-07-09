@@ -14,7 +14,9 @@
                 <field name="info_subca_id"/>
                 <field name="info_subca_ids" widget="many2many_tags" />
                 <field name="info_priority"/>
-                <field name="info_assigned_to" /> 
+                <field name="info_assigned_to" domain="[('id', 'in',filter_user_list)]"/> 
+                <field name="filter_user_list" invisible="1"/> 
+
                 <field name="info_state" />                 
             </tree>
         </field>
@@ -50,7 +52,9 @@
                         </group>
                         <group>
                             <field name="info_assignement_group_id"/>
-                            <field name="info_assigned_to"  />
+                            <field name="info_assigned_to"  domain="[('id', 'in',filter_user_list)]"/>
+                            <field name="filter_user_list" invisible="1"/> 
+
                             <field name="info_reason" attrs="{'invisible': [('info_state','!=','onhold')]}" />
                             <!-- <field name="role_id" invisible="0" /> -->
                             <!-- <field name="test" invisible="0" /> -->

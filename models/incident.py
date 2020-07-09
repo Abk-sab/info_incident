@@ -13,6 +13,14 @@ from dateutil.relativedelta import relativedelta
 _logger = logging.getLogger(__name__) 
 
 
+class InfoResUserInherit(models.Model):
+  _inherit='res.users'
+
+  info_incident_user_list = fields.Many2one('info.incidents.incidents', string='incidents')
+
+
+
+
 
 class InfoIncident(models.Model):
     _name = 'info.incidents.incidents'
@@ -59,7 +67,10 @@ class InfoIncident(models.Model):
     info_impact = fields.Many2one('info.incident.impact', string="Impact")
     info_urgency = fields.Many2one('info.incident.priority', string="Urgency")
 
-    info_priority = fields.Many2one('info.incident.urgency', string="Priority")
+
+    info_priority = fields.Many2one('info.incidents.urgency', string="Priority")
+    filter_user_list = fields.One2many('res.users', inverse_name='info_incident_user_list', string="user_list")
+
 
     info_assignement_group_id = fields.Many2one('info.assign.groups',string="Assignment group", required=True)
     info_assigned_to = fields.Many2one('res.users',string="Assigned to", required=True)
@@ -132,18 +143,27 @@ class InfoIncident(models.Model):
                 _logger.warning(calculated_close)
 
     @api.multi
-    @api.onchange('info_assignement_group_id.info_group_id.user_list')
+    @api.onchange('info_assignement_group_id')
     def get_users_(self):
-      # # prefetch
-      # data = {d['id']: d['role_id']
-      #         for d in self.read(['role_id'])}
-      for incident in self:
-        group_ids = incident.info_assignement_group_id.info_group_id.user_list
-        _logger.warning("------------+++++++++++-----------")
-        _logger.warning(group_ids)
-        
-        # if self.ids:
-        #   user_ids = self.env['info.assign.groups'].search(['info_group_id', 'in',group_ids.ids ])[0]
-        #   list_users = user_ids.user_list
-        #   _logger.warning("------------+++++++++++-----------")
-        # _logger.warning(list_users)
+      if self.info_assignement_group_id:
+        if self.info_assignement_group_id.info_group_id:
+          if self.info_assignement_group_id.info_group_id.user_list:
+                   
+            if self.info_assigned_to:
+              if self.info_assigned_to not in self.info_assignement_group_id.info_group_id.user_list:
+                self.info_assigned_to = False
+
+            if self.filter_user_list:
+              self.filter_user_list = [(5,0,0)]
+              
+            for user in self.info_assignement_group_id.info_group_id.user_list:
+              self.filter_user_list = [( 4, user.id)]
+              
+                
+              
+
+
+      
+
+
+      
